@@ -1,0 +1,5 @@
+dbip*
+*.drawio*
+*.sql
+dist/
+node_modules/
