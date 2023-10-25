@@ -1,5 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { SessionsConsumerDataType, SessionsConsumerService } from './sessions-consumer.service';
+import {
+  SessionsConsumerDataType,
+  SessionsConsumerService,
+} from './sessions-consumer.service';
 import { SessionsService } from './sessions.service';
 import { SpammerIdentifierService } from './spammer-identifier.service';
 import { Job } from 'bull';
@@ -30,9 +33,11 @@ describe('SessionsConsumerService', () => {
 
     service = await module.resolve(SessionsConsumerService);
     sessionsService = await module.resolve(SessionsService);
-    sessionsService.create = jest.fn().mockImplementation((data: SessionsConsumerDataType) => {
-      return plainToClass(Session, data);
-    });
+    sessionsService.create = jest
+      .fn()
+      .mockImplementation((data: SessionsConsumerDataType) => {
+        return plainToClass(Session, data);
+      });
   });
 
   it('should be defined', () => {
@@ -41,7 +46,7 @@ describe('SessionsConsumerService', () => {
 
   describe('process', () => {
     describe('when pass data', () => {
-      it ('must return create session with new fields', async () => {
+      it('must return create session with new fields', async () => {
         const data = {
           data: {
             params: {

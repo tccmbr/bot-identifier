@@ -52,7 +52,9 @@ export class SessionsConsumerService {
     const sessionCreated = await this.sessionsService.create(createSessionDto);
 
     if (!sessionCreated)
-      this.logger.error('Não foi possível salvar!', [{ data: createSessionDto }]);
+      this.logger.error('Não foi possível salvar!', [
+        { data: createSessionDto },
+      ]);
 
     return sessionCreated;
   }
