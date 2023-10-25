@@ -1,22 +1,25 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { SessionsProducerService } from './sessions/services/sessions-producer.service';
 
 describe('AppController', () => {
-  let appController: AppController;
+  let controller: AppController;
+
+  class SessionsProducerServiceMock {}
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
       controllers: [AppController],
-      providers: [AppService],
+      providers: [{
+        provide: SessionsProducerService,
+        useClass: SessionsProducerServiceMock,
+      }],
     }).compile();
 
-    appController = app.get<AppController>(AppController);
+    controller = app.get<AppController>(AppController);
   });
 
-  describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
-    });
+  it('should be defined', () => {
+    expect(controller).toBeDefined();
   });
 });
