@@ -1,14 +1,28 @@
 version: '3.1'
 services:
-  db:
-    image: postgres:14.9
+  mongodb:
+    image: mongodb/mongodb-community-server:6.0-ubi8
+    environment:
+      MONGODB_INITDB_ROOT_USERNAME: ${DATABASE_USER}
+      MONGODB_INITDB_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+      MONGO_INITDB_DATABASE: ${DATABASE_NAME}
+    ports:
+      - '27017:27017'
+    expose:
+      - '27017'
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - mongodb-data:/var/lib/mysql
+  cache:
+    image: redis:7.2.2-alpine
     restart: always
     ports:
-      -"5432:5432"
-    expose:
-      - "5432"
-    environment:
-      - POSTGRES_USER: "${DATABASE_USER}"
-      - POSTGRES_PASSWORD: "${DATABASE_PASSWORD}"
-      - POSTGRES_DB: "${analytics}"
-      - TZ: "America/Sao_Paulo"
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass ${QUEUE_PASSWORD}
+    volumes:
+      - cache:/data
+volumes:
+  mongodb-data:
+    driver: local
+  cache:
+    driver: local
