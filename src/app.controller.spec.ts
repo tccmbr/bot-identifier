@@ -10,10 +10,12 @@ describe('AppController', () => {
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
       controllers: [AppController],
-      providers: [{
-        provide: SessionsProducerService,
-        useClass: SessionsProducerServiceMock,
-      }],
+      providers: [
+        {
+          provide: SessionsProducerService,
+          useClass: SessionsProducerServiceMock,
+        },
+      ],
     }).compile();
 
     controller = app.get<AppController>(AppController);
