@@ -1,5 +1,7 @@
-dbip*
 *.drawio*
 *.sql
 dist/
 node_modules/
+*.jmx
+*.csv
+.env
