@@ -34,4 +34,8 @@ export class SessionsService {
 
     return this.sessionModel.find(where).exec();
   }
+
+  async findOneById(id: string) {
+    return this.sessionModel.findById(id).exec();
+  }
 }
