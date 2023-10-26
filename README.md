@@ -23,7 +23,7 @@ $ yarn install
 
 ## Executando os containers
 
-Ao executar o comando abaixo, os containers: web, api, mongodb, mysql e redis, serão criados.
+Ao executar o comando abaixo, os containers: mongodb e redis, serão criados.
 
 ```bash
 $ docker compose up
