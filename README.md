@@ -1,6 +1,6 @@
 ## Bot Identifier
 
-É um projeto que visa identificar através do user-agent e referer da requisição, se a mesma foi feita por um bot / spammer.
+É um projeto que visa identificar através do user-agent e referer da requisição, se a mesma foi feita por um bot / spammer. Veja a arquitetura em `documents/arquitetura.pdf`.
 
 ## Requisitos
 
