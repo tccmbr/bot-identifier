@@ -21,6 +21,12 @@ Descomente o arquivo `.env.example` para `.env` e adicione seus valores as vari�
 $ yarn install
 ```
 
+## Gerando versão de produção
+
+```bash
+$ yarn build
+```
+
 ## Executando os containers
 
 Ao executar o comando abaixo, os containers: mongodb e redis, serão criados.
@@ -28,6 +34,13 @@ Ao executar o comando abaixo, os containers: mongodb e redis, serão criados.
 ```bash
 $ docker compose up
 ```
+
+## Executando o projeto
+
+```bash
+$ yarn start:prod
+```
+Em seguida, acesse http://localhost:8080.
 
 ## Jmeter
 1 - Faça o download [aqui](https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.6.2.tgz).
@@ -41,7 +54,7 @@ $ cd ~/Downloads/apache-jmeter-5.6.2
 $ ./bin/jmeter.sh
 ```
 
-4 - Clique em `"Arquivo" > "Abrir"` e selecione o arquivo `"Bot Identifier.jmx"` que se encontra na raiz deste projeto.
+4 - Clique em `"Arquivo" > "Abrir"` e selecione o arquivo `"Bot Identifier.jmx"` que se encontra no diretório `jmeter`.
 
 5 - Em `"Grupo de usuários" > Requisição HTTP > Requisições`, selecione o arquivo `sessions2.csv`.
 
