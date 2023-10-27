@@ -8,6 +8,8 @@ import { SessionsController } from './controllers/sessions.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Session, SessionSchema } from './schemas/session.schema';
 import { SpammerIdentifierService } from './services/spammer-identifier.service';
+import { PlayersController } from './controllers/players.controller';
+import { PlayersService } from './services/players.service';
 
 @Module({
   imports: [
@@ -36,8 +38,9 @@ import { SpammerIdentifierService } from './services/spammer-identifier.service'
     SessionsConsumerService,
     SessionsService,
     SpammerIdentifierService,
+    PlayersService,
   ],
   exports: [SessionsProducerService],
-  controllers: [SessionsController],
+  controllers: [SessionsController, PlayersController],
 })
 export class SessionsModule {}
