@@ -1,4 +1,10 @@
-import { Controller, Get, NotFoundException, Param, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  NotFoundException,
+  Param,
+  Query,
+} from '@nestjs/common';
 import { SearchDto } from '../dto/search-session.dto';
 import { SessionsService } from '../services/sessions.service';
 

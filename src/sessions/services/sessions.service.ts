@@ -14,11 +14,12 @@ export class SessionsService {
 
   async create(createSessionDto: CreateSessionDto): Promise<Session> {
     const createdSession = new this.sessionModel(createSessionDto);
-    return createdSession.save();
+    return await createdSession.save();
   }
 
   async findAll(searchDto: SearchDto): Promise<Session[]> {
-    const where = {};
+    const where = { ...searchDto };
+    delete where.limit;
 
     if (searchDto.createdAt) {
       const createdAtGte = moment(searchDto.createdAt).startOf('day').format();
@@ -32,10 +33,18 @@ export class SessionsService {
       });
     }
 
-    return this.sessionModel.find(where).exec();
+    return await this.sessionModel
+      .find(
+        where,
+        {},
+        {
+          limit: searchDto.limit,
+        },
+      )
+      .exec();
   }
 
   async findOneById(id: string) {
-    return this.sessionModel.findById(id).exec();
+    return await this.sessionModel.findById(id).exec();
   }
 }
