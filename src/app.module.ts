@@ -20,6 +20,5 @@ import { MongooseModule } from '@nestjs/mongoose';
     SessionsModule,
   ],
   controllers: [AppController],
-  providers: [],
 })
 export class AppModule {}
